@@ -66,7 +66,7 @@ DROP FUNCTION IF EXISTS TT_yt_yvi02_disturbance_mapText(text, text, text, text, 
 DROP FUNCTION IF EXISTS TT_yt_yvi02_disturbance_notNull(text, text, text, text, text);
 DROP FUNCTION IF EXISTS TT_yt_yvi02_disturbance_hasCountOfLayers(text, text, text, text);
 DROP FUNCTION IF EXISTS TT_yvi03_nat_non_veg_validation(text,text,text, text);
-DROP FUNCTION IF EXISTS TT_yvi03_nfl_soil_moisture_validation(text,text,text,text);
+DROP FUNCTION IF EXISTS TT_yvi03_nfl_soil_moisture_validation(text,text,text,text,text);
 DROP FUNCTION IF EXISTS TT_fim_species_count_validate(text, text);
 DROP FUNCTION IF EXISTS TT_mb_mb03_disturbance_hasCountOfNotNull(text, text);
 DROP FUNCTION IF EXISTS TT_mb_fri03_getSpeciesPer1(text);
@@ -161,7 +161,7 @@ DROP FUNCTION IF EXISTS TT_yt_yvi02_disturbance_copyText(text, text, text, text,
 DROP FUNCTION IF EXISTS TT_yt_yvi02_disturbance_copyInt(text, text, text, text, text);
 DROP FUNCTION IF EXISTS TT_yt_yvi02_disturbance_matchList(text, text, text, text, text, text);
 DROP FUNCTION IF EXISTS TT_yvi03_nat_non_veg_translation(text, text, text, text);
-DROP FUNCTION IF EXISTS TT_yvi03_non_for_veg_translation(text, text, text);
+DROP FUNCTION IF EXISTS TT_yvi03_non_for_veg_translation(text, text);
 DROP FUNCTION IF EXISTS TT_nt_lyr_layer_translation(text, text, text, text, text, text, text, text);
 DROP FUNCTION IF EXISTS TT_mb_mb03_map_disturbance(text, text, text);
 -------------------------------------------------------------------------------
@@ -182,7 +182,7 @@ DROP FUNCTION IF EXISTS TT_mb_fri01_wetland_code(text, text);
 DROP FUNCTION IF EXISTS TT_pc02_wetland_code(text, text, text);
 DROP FUNCTION IF EXISTS TT_qc_prg5_species_code_to_reordered_array(text);
 DROP FUNCTION IF EXISTS TT_yt_wetland_code(text, text, text, text, text, text, text);
-DROP FUNCTION IF EXISTS TT_yt04_wetland_code(text, text, text, text, text, text, text);
+DROP FUNCTION IF EXISTS TT_yt04_wetland_string_code(text, text, text, text, text, text, text);
 DROP FUNCTION IF EXISTS TT_qc_prg5_species(text, text);
 DROP FUNCTION IF EXISTS TT_qc_prg4_species(text, text);
 -------------------------------------------------------------------------------

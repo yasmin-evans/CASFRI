@@ -29,10 +29,10 @@ inventoryID=BC18
 srcFileName=VEG_COMP_LYR
 
 srcFileName_L1=${srcFileName}_L1_POLY
-srcFullPath_L1="$friDir/BC/$inventoryID/data/inventory/${srcFileName_L1}_2023.gdb"
+srcFullPath_L1="vsizip/$friDir/BC/$inventoryID/data/inventory/2024_PROJECTION_${srcFileName_L1}.gdb.zip/${srcFileName_L1}.gdb"
 
 srcFileName_L2=${srcFileName}_L2_POLY
-srcFullPath_L2="$friDir/BC/$inventoryID/data/inventory/${srcFileName_L2}_2023.gdb"
+srcFullPath_L2="vsizip/$friDir/BC/$inventoryID/data/inventory/2024_PROJECTION_${srcFileName_L2}.gdb.zip/${srcFileName_L2}.gdb"
 
 fullTargetTableName=$targetFRISchema.bc18
 tableName_L1=${fullTargetTableName}_layer_1

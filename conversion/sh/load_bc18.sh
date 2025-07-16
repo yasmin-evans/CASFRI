@@ -29,10 +29,10 @@ inventoryID=BC18
 srcFileName=VEG_COMP_LYR
 
 srcFileName_L1=${srcFileName}_L1_POLY
-srcFullPath_L1="vsizip/$friDir/BC/$inventoryID/data/inventory/2024_PROJECTION_${srcFileName_L1}.gdb.zip/${srcFileName_L1}.gdb"
+srcFullPath_L1="/vsizip/$friDir/BC/$inventoryID/data/inventory/2024_PROJECTION_${srcFileName_L1}.gdb.zip/${srcFileName_L1}.gdb"
 
 srcFileName_L2=${srcFileName}_L2_POLY
-srcFullPath_L2="vsizip/$friDir/BC/$inventoryID/data/inventory/2024_PROJECTION_${srcFileName_L2}.gdb.zip/${srcFileName_L2}.gdb"
+srcFullPath_L2="/vsizip/$friDir/BC/$inventoryID/data/inventory/2024_PROJECTION_${srcFileName_L2}.gdb.zip/${srcFileName_L2}.gdb"
 
 fullTargetTableName=$targetFRISchema.bc18
 tableName_L1=${fullTargetTableName}_layer_1
@@ -44,7 +44,7 @@ tableName_L2=${fullTargetTableName}_layer_2
 
 "$gdalFolder/ogr2ogr" \
 -f PostgreSQL "$pg_connection_string" "$srcFullPath_L1" \
--nln $tableName_L1 $layer_creation_options $other_options \
+-nln $tableName_L1 $layer_creation_options -s_srs "EPSG:3005" $other_options \
 -progress $overwrite_tab
 
 "$gdalFolder/ogr2ogr" \
@@ -114,7 +114,8 @@ t1.non_veg_cover_pct_2,
 t1.non_veg_cover_type_2,
 t1.non_veg_cover_pattern_3,
 t1.non_veg_cover_pct_3,
-t1.non_veg_cover_type_3,
+t1.non_veg_cover_type_
+t2.proj_age_1 AS l2_proj_age_1,3,
 t1.land_cover_class_cd_1,
 t1.est_coverage_pct_1,
 t1.soil_moisture_regime_1,

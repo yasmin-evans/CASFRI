@@ -40,7 +40,6 @@
 -- 1000000-1500000 sources rows -->  800 test rows
 -- 1500000-2000000 sources rows -->  900 test rows
 -- 2000000-more    sources rows --> 1000 test rows
-
 ---------------------------------------------------------
 -- Compare new with old tables
 ---------------------------------------------------------

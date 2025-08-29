@@ -1573,6 +1573,7 @@ RETURNS text AS $$
                   WHEN rulelc = 'nl_nli01_iscommercial' THEN '-8887'
                   WHEN rulelc = 'nl_nli01_isnoncommercial' THEN '-8887'
                   WHEN rulelc = 'nl_nli01_isforest' THEN '-8887'
+                  WHEN rulelc = 'nl_nli02_isforest' THEN '-8887'
                   WHEN rulelc = 'qc_hascountofnotnull' THEN '-8886'
                   WHEN rulelc = 'ab_photo_year_validation' THEN '-9997'
                   WHEN rulelc = 'pc02_hascountofnotnull' THEN '-8886'
@@ -1609,11 +1610,13 @@ RETURNS text AS $$
                   WHEN rulelc = 'nl_nli01_isforest' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'nl_nli01_iscommercial' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'nl_nli01_isnoncommercial' THEN 'NOT_APPLICABLE'
+                  WHEN rulelc = 'nl_nli02_isforest' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'qc_prg3_wetland_validation' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'qc_prg4_wetland_validation' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'qc_prg5_wetland_validation' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'ab_avi01_wetland_validation' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'nl_nli01_wetland_validation' THEN 'NOT_APPLICABLE'
+                  WHEN rulelc = 'nl_nli02_wetland_validation' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'bc_vri01_wetland_validation' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'ns_nsi01_wetland_validation' THEN 'NOT_APPLICABLE'
                   WHEN rulelc = 'pe_pei01_wetland_validation' THEN 'NOT_APPLICABLE'
@@ -1718,7 +1721,29 @@ RETURNS text AS $$
          END;
 $$ LANGUAGE sql IMMUTABLE;
 -------------------------------------------------------------------------------
-
+-------------------------------------------------------------------------------
+-- TT_nl_nli02_wetland_code(text, text, text)
+--
+-- Run logic to generate 4 letter code
+-------------------------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_wetland_code(text, text, text);
+CREATE OR REPLACE FUNCTION TT_nl_nli02_wetland_code(
+  nfcode text,
+  sitecode text,
+  species_comp text
+)
+RETURNS text AS $$
+	SELECT CASE
+           WHEN nfcode='BOG' THEN 'BONS'
+           WHEN nfcode='WBOG' THEN 'MONG'
+           WHEN nfcode='TBOG' THEN 'BTNN'
+           WHEN species_comp IN('BSTL', 'BSTLBF', 'BSTLWB' ) THEN 'STNN'
+           WHEN species_comp IN('TL', 'TLBF','TLWB', 'TLBS', 'TLBSBF', 'TLBSWB') THEN 'STNN'
+           WHEN species_comp IN('WBTL', 'WBTLBS', 'WBBSTL') THEN 'STNN'
+           ELSE NULL
+         END;
+$$ LANGUAGE sql IMMUTABLE;
+-------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- TT_ab_avi01_wetland_code(text, text, text)
 --
@@ -3849,7 +3874,37 @@ RETURNS boolean AS $$
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+-- TT_nl_nli02_origin_lower_validation
+--
+-- age_class text,
+-- src_filename text
+--
+-- For age class 7 in Newfoundland upper age bound is 121+ which means lower origin
+-- is unknown.
+-- Same for age class 9 in Labrador where age class is 161+.
+------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_origin_lower_validation(text);
+CREATE OR REPLACE FUNCTION TT_nl_nli02_origin_lower_validation(
+  age_class text
+)
+RETURNS boolean AS $$
+  DECLARE
+    age_class text;
+  BEGIN
+  
+     IF age_class::int = 7 THEN
+       RETURN FALSE;
+     END IF;
+  
+    --IF age_class::int = 9 THEN
+      --RETURN FALSE;
+    --END IF;
 
+    RETURN TRUE;
+  END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+-------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- TT_nl_nli01_origin_newfoundland_validation
 --
@@ -3881,6 +3936,32 @@ RETURNS boolean AS $$
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
 
+-------------------------------------------------------------------------------
+-- TT_nl_nli02_origin_newfoundland_validation
+--
+-- density_code text,
+-- src_filename text
+--
+-- Catch the error case where polygon is in Newfoundland and density code is 9 or 10
+------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_origin_newfoundland_validation(text, text);
+CREATE OR REPLACE FUNCTION TT_nl_nli02_origin_newfoundland_validation(
+  age_code text
+)
+RETURNS boolean AS $$
+  DECLARE
+    age_code text;
+  BEGIN
+
+       IF age_code IN('9') THEN
+         RETURN FALSE;
+       END IF;
+  
+    RETURN TRUE;
+  
+  END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+-------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- TT_nl_nli01_crown_closure_validation
 --
@@ -4051,7 +4132,34 @@ RETURNS boolean AS $$
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
-
+-------------------------------------------------------------------------------
+-- TT_nl_nli02_wetland_validation
+--
+-- Check for valid 4 letter code.
+--
+-- e.g. TT_nl_nli02_wetland_validation(landtype, per1, '1')
+------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_wetland_validation(text, text, text, text);
+CREATE OR REPLACE FUNCTION TT_nl_nli02_wetland_validation(
+  nfcode text,
+  sitecode text,
+  species_comp text,
+  retCharPos text
+)
+RETURNS boolean AS $$
+  DECLARE
+    _wetland_code text;
+    _wetland_char text;
+  BEGIN
+    _wetland_code = TT_nl_nli02_wetland_code(nfcode, sitecode, species_comp);
+    _wetland_char = substring(_wetland_code from retCharPos::int for 1);
+    IF _wetland_char IS NULL OR _wetland_char = '-' THEN
+      RETURN FALSE;
+    END IF;
+    RETURN TRUE;
+  END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+-------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- TT_bc_vri01_wetland_validation
 --
@@ -7083,7 +7191,33 @@ RETURNS text AS $$
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
-
+-------------------------------------------------------------------------------
+-- TT_nl_nli02_productivity_type_translation
+--
+-- stand_id text,
+-- working_group text
+--
+-- If commercial, return HARVESTABLE, if non-commercial return SCRUB_SHRUB, if treed bog return TREED_MUSKEG.
+------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_productivity_type_translation(text, text);
+CREATE OR REPLACE FUNCTION TT_nl_nli02_productivity_type_translation(
+  stand_id text,
+  foresttype text
+)
+RETURNS text AS $$
+  BEGIN
+    IF stand_id = 'TBOG' THEN
+      RETURN 'TREED_MUSKEG';
+    ELSIF foresttype = '1' THEN
+      RETURN 'HARVESTABLE';
+    ELSIF foresttype = '2' THEN
+      RETURN 'SCRUB_SHRUB';
+    ELSE
+      RETURN NULL;
+    END IF;
+  END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+-------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- TT_nl_nli01_origin_upper_translation(text, text)
 --
@@ -7121,6 +7255,40 @@ RETURNS int AS $$
     ELSE
       RETURN NULL;
     END IF;
+  
+    RETURN photo_year - age;
+  END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+-- TT_nl_nli02_origin_upper_translation(text, text)
+--
+-- age_class text,
+-- the_geom text
+--
+-- NL map units have values 1 - 180, Labrador map units are 238 - 415
+-- Origin translation is different for Newfoundland and Labrador
+-- Figure out which area the row is from and use the correct translation
+-- to get the upper bound of age range. Then subtract this from the photo
+-- year to get origin upper.
+-- photo year is calculated by intersecting with the photo year map.
+
+------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_origin_upper_translation(text, text);
+
+CREATE OR REPLACE FUNCTION TT_nl_nli02_origin_upper_translation(
+  age_class text,
+  the_geom text
+)
+RETURNS int AS $$
+  DECLARE
+    photo_year int;
+    age int;
+  BEGIN
+    photo_year = TT_geoIntersectionInt(the_geom, 'rawfri', 'nl02_photoyear', 'wkb_geometry', 'year', 'GREATEST_AREA');
+  
+    age = TT_mapText(age_class, '{''1'',''2'',''3'',''4'',''5'',''6'',''7'',''8''}', '{''1'',''21'',''41'',''61'',''81'',''101'',''121'',''141''}')::int; -- Labrador
   
     RETURN photo_year - age;
   END;
@@ -7166,6 +7334,40 @@ RETURNS int AS $$
       RETURN NULL;
     END IF;
   
+    RETURN photo_year - age;
+  END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+-- TT_nl_nli02_origin_lower_translation
+--
+-- age_class text,
+-- the_geom text
+--
+-- NL map units have values 1 - 180, Labrador map units are 238 - 415
+-- Origin translation is different for Newfoundland and Labrador
+-- Figure out which area the row is from and use the correct translation
+-- to get the upper bound of age range. Then subtract this from the photo
+-- year to get origin upper.
+-- photo year is calculated by intersecting with the photo year map.
+
+------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_origin_lower_translation(text, text);
+CREATE OR REPLACE FUNCTION TT_nl_nli02_origin_lower_translation(
+  age_class text,
+  the_geom text
+)
+RETURNS int AS $$
+  DECLARE
+    photo_year int;
+    age int;
+  BEGIN
+    photo_year = TT_geoIntersectionInt(the_geom, 'rawfri', 'nl02_photoyear', 'wkb_geometry', 'year', 'GREATEST_AREA');
+  
+    -- don't return the last values of 7 and 9 because the upper age is not defined, therefore lower origin is unknown_value. Catch these with validation.
+    age = TT_mapText(age_class, '{''1'',''2'',''3'',''4'',''5'',''6'',''7'',''8''}', '{''20'',''40'',''60'',''80'',''100'',''120'',''140'',''160''}')::int;
+
     RETURN photo_year - age;
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
@@ -7702,7 +7904,32 @@ RETURNS text AS $$
   END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
-
+-------------------------------------------------------------------------------
+-- TT_nl_nli02_wetland_translation
+--
+-- Assign 4 letter wetland character code, then return the requested character (1-4)
+--
+-- e.g. TT_nl_nli02_wetland_translation(landtype, per1, '1')
+------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_wetland_translation(text, text, text, text);
+CREATE OR REPLACE FUNCTION TT_nl_nli02_wetland_translation(
+  nfcode text,
+  sitecode text,
+  species_comp text,
+  ret_char text
+)
+RETURNS text AS $$
+  DECLARE
+    _wetland_code text;
+  BEGIN
+    _wetland_code = TT_nl_nli02_wetland_code(nfcode, sitecode, species_comp);
+    IF _wetland_code IS NULL THEN
+      RETURN NULL;
+    END IF;
+    RETURN TT_wetland_code_translation(_wetland_code, ret_char);
+  END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+-------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 -- TT_bc_vri01_wetland_translation
 --

@@ -59,6 +59,7 @@ SELECT TT_Prepare('translation', 'mb_fri01_lyr', '_mb_fri_lyr_test', 'ab_avi01_l
 SELECT TT_Prepare('translation', 'mb_fri02_lyr', '_mb_fri02_lyr_test', 'ab_avi01_lyr'); 
 SELECT TT_Prepare('translation', 'mb_fli01_lyr', '_mb_fli_lyr_test', 'ab_avi01_lyr'); 
 SELECT TT_Prepare('translation', 'nl_nli01_lyr', '_nl_nli_lyr_test', 'ab_avi01_lyr');
+SELECT TT_Prepare('translation', 'nl_nli02_lyr', '_nl_nli02_lyr_test', 'ab_avi01_lyr');
 SELECT TT_Prepare('translation', 'qc_ini03_lyr', '_qc_ini03_lyr_test', 'ab_avi01_lyr');
 SELECT TT_Prepare('translation', 'qc_ini04_lyr', '_qc_ini04_lyr_test', 'ab_avi01_lyr');
 SELECT TT_Prepare('translation', 'qc_ipf05_lyr', '_qc_ipf05_lyr_test', 'ab_avi01_lyr');
@@ -68,6 +69,7 @@ SELECT TT_Prepare('translation', 'yt_yvi02_lyr', '_yt_yvi02_lyr_test', 'ab_avi01
 -------------------------
 DROP TABLE IF EXISTS casfri50_test.lyr_all_new CASCADE;
 -------------------------
+
 -- Create indexes on species_code_mapping
 CREATE UNIQUE INDEX IF NOT EXISTS species_code_mapping_ab_species_codes_idx
 ON translation.species_code_mapping (ab_species_codes)
@@ -245,7 +247,7 @@ SELECT * FROM TT_Translate_bc_lyr_test('rawfri', 'bc12_l1_to_bc_l1_map_1120_lyr'
 SELECT TT_CreateMappingView('rawfri', 'bc12', 2, 'bc', 1, 30000, NULL, 'lyr'); -- Generates about 1000 (1001) LYR rows
 INSERT INTO casfri50_test.lyr_all_new
 SELECT * FROM TT_Translate_bc_lyr_test('rawfri', 'bc12_l2_to_bc_l1_map_30000_lyr');
-*/------------------------
+------------------------
 SELECT TT_CreateMappingView('rawfri', 'bc18', 1, 'bc', 1, 1120, NULL, 'lyr'); -- Generates about 1000 (999) LYR rows
 INSERT INTO casfri50_test.lyr_all_new
 SELECT * FROM TT_Translate_bc_lyr_test('rawfri', 'bc18_l1_to_bc_l1_map_1120_lyr');
@@ -485,6 +487,10 @@ SELECT * FROM TT_Translate_mb_fli_lyr_test('rawfri', 'mb07_l5_to_mb_fli_l1_map_l
 SELECT TT_CreateMappingView('rawfri', 'nl01', 1, 'nl_nli', 1, 1500, NULL, 'lyr'); -- Generates 900 (964) LYR rows
 INSERT INTO casfri50_test.lyr_all_new
 SELECT * FROM TT_Translate_nl_nli_lyr_test('rawfri', 'nl01_l1_to_nl_nli_l1_map_1500_lyr');
+------------------------
+SELECT TT_CreateMappingView('rawfri', 'nl02', 1, 'nl_nli2', 1, 1500, NULL, 'lyr'); -- Generates 900 (964) LYR rows
+INSERT INTO casfri50_test.lyr_all_new 
+SELECT * FROM TT_Translate_nl_nli02_lyr_test('rawfri', 'nl02_l1_to_nl_nli2_l1_map_1500_lyr');
 ------------------------
 SELECT TT_CreateMappingView('rawfri', 'qc01', 1, 'qc_ini03', 1, 1700, NULL, 'lyr'); -- Generates 1000 (1084) LYR rows
 INSERT INTO casfri50_test.lyr_all_new

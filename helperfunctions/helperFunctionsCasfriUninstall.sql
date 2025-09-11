@@ -39,6 +39,7 @@ DROP FUNCTION IF EXISTS TT_mb_fri_hascountOfNotNull(text, text, text, text);
 DROP FUNCTION IF EXISTS TT_nl_nli01_isCommercial(text, text);
 DROP FUNCTION IF EXISTS TT_nl_nli01_isNonCommercial(text, text);
 DROP FUNCTION IF EXISTS TT_nl_nli01_isForest(text, text);
+DROP FUNCTION IF EXISTS TT_nl_nli02_isForest(text);
 DROP FUNCTION IF EXISTS TT_qc_prg4_lengthMatchList(text, text);
 DROP FUNCTION IF EXISTS TT_nl_nli01_origin_lower_validation(text, text);
 DROP FUNCTION IF EXISTS TT_nl_nli01_origin_newfoundland_validation(text, text);

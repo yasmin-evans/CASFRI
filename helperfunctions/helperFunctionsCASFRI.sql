@@ -3838,6 +3838,29 @@ $$ LANGUAGE plpgsql IMMUTABLE;
 -------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------
+-- TT_nl_nli02_isForest
+--
+-- stand_id text,
+-- working_group text
+--
+-- Is row either commercial or non-commercial forest?
+------------------------------------------------------------
+--DROP FUNCTION IF EXISTS TT_nl_nli02_isForest(text, text);
+CREATE OR REPLACE FUNCTION TT_nl_nli02_isForest(
+  foresttype text
+)
+RETURNS boolean AS $$
+  BEGIN
+    IF foresttype IS NOT NULL AND foresttype <> '' THEN
+      RETURN TRUE;
+    ELSE
+      RETURN FALSE;
+    END IF;
+  END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
 -- TT_nl_nli01_origin_lower_validation
 --
 -- age_class text,

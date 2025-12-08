@@ -3169,63 +3169,6 @@ SELECT '80.13'::text number,
 ---------------------------------------------------------
   -- TT_nl_nli01_origin_upper_translation
 ---------------------------------------------------------
-<<<<<<< HEAD
---UNION ALL
---SELECT '79.1'::text number,
---       'TT_nl_nli01_origin_upper_translation'::text function_tested,
---       'Test age class 1 Newfoundland'::text description,
---       TT_nl_nli01_origin_upper_translation('1', 'mu001', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) = 1995 passed
------------------------------------------------------------
---UNION ALL
---SELECT '79.2'::text number,
---       'TT_nl_nli01_origin_upper_translation'::text function_tested,
---       'Test age class 2 Newfoundland'::text description,
---       TT_nl_nli01_origin_upper_translation('2', 'mu001', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) = 1974 passed
------------------------------------------------------------
---UNION ALL
---SELECT '79.3'::text number,
---       'TT_nl_nli01_origin_upper_translation'::text function_tested,
---       'Test age class 9 Labrador'::text description,
---       TT_nl_nli01_origin_upper_translation('9', 'mu300', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) = 1834 passed
------------------------------------------------------------
---UNION ALL
---SELECT '79.4'::text number,
---       'TT_nl_nli01_origin_upper_translation'::text function_tested,
---       'Test age class 9 Newfoundland, null'::text description,
---       TT_nl_nli01_origin_upper_translation('9', 'mu001', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) IS NULL passed
------------------------------------------------------------
---  -- TT_nl_nli01_origin_lower_translation
------------------------------------------------------------
---UNION ALL
---SELECT '80.1'::text number,
---       'TT_nl_nli01_origin_lower_translation'::text function_tested,
---       'Test age class 1 Newfoundland'::text description,
---       TT_nl_nli01_origin_lower_translation('1', 'mu001', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) = 1975 passed
------------------------------------------------------------
---UNION ALL
---SELECT '80.2'::text number,
---       'TT_nl_nli01_origin_lower_translation'::text function_tested,
---       'Test age class 2 Newfoundland'::text description,
---       TT_nl_nli01_origin_lower_translation('2', 'mu001', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) = 1955 passed
------------------------------------------------------------
---UNION ALL
---SELECT '80.3'::text number,
---       'TT_nl_nli01_origin_lower_translation'::text function_tested,
---       'Test age class 9 Labrador'::text description,
---       TT_nl_nli01_origin_lower_translation('9', 'mu300', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) IS NULL passed
------------------------------------------------------------
---UNION ALL
---SELECT '80.4'::text number,
---       'TT_nl_nli01_origin_lower_translation'::text function_tested,
---       'Test age class 8 Labrador, null'::text description,
---       TT_nl_nli01_origin_lower_translation('8', 'mu300', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) = 1835 passed
------------------------------------------------------------
---UNION ALL
---SELECT '80.5'::text number,
---       'TT_nl_nli01_origin_lower_translation'::text function_tested,
---       'Test age class 8 Newfoundland, null'::text description,
---       TT_nl_nli01_origin_lower_translation('8', 'mu001', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 900914)))::text) IS NULL passed
-=======
 UNION ALL
 SELECT '81.1'::text number,
        'TT_nl_nli01_origin_upper_translation'::text function_tested,
@@ -3281,7 +3224,6 @@ SELECT '82.5'::text number,
        'TT_nl_nli01_origin_lower_translation'::text function_tested,
        'Test age class 8 Newfoundland, null'::text description,
        TT_nl_nli01_origin_lower_translation('8', 'mu001', ST_Multi(ST_MakePolygon(ST_SetSRID(ST_GeomFromText('LINESTRING(2632203 2088435,2628245 2094183,2635341 2099086,2639309 2093346,2632203 2088435)'), 102001)))::text) IS NULL passed
->>>>>>> f0e80082 (Update made to the helperFunctionsCasfri test file to include tests for the NL02 helper functions.)
 ---------------------------------------------------------
   -- tt_nl_nli01_origin_lower_validation
 ---------------------------------------------------------
@@ -4871,56 +4813,55 @@ SELECT '145.6'::text number,
 -- TT_pe_pei02_countOfNotNull
 ---------------------------------------------------------
 UNION ALL
-<<<<<<< HEAD
-SELECT '139.1'::text number,
+SELECT '146.1'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test spec1'::text description,
        TT_pe_pei02_countOfNotNull('BS', '', '', '', '', '', 'NULL','2') = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '139.2'::text number,
+SELECT '146.2'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test spec2'::text description,
        TT_pe_pei02_countOfNotNull('', 'BS', '', '', '', '', 'NULL','2') = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '139.3'::text number,
+SELECT '146.3'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test spec3'::text description,
        TT_pe_pei02_countOfNotNull('', '', 'BS', '', '', '', 'NULL', '2') = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '139.4'::text number,
+SELECT '146.4'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test spec4'::text description,
        TT_pe_pei02_countOfNotNull('', '', '', 'BS', '', '', 'NULL', '2') = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '139.5'::text number,
+SELECT '146.5'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test spec5'::text description,
        TT_pe_pei02_countOfNotNull('', '', '', '', 'BS', '', 'NULL', '2') = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '139.6'::text number,
+SELECT '146.6'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test spec1 and nfl'::text description,
        TT_pe_pei02_countOfNotNull('BS', '', '', '', '', 'FM', 'NULL', '2') = 2 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '139.7'::text number,
+SELECT '146.7'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test nfl only'::text description,
        TT_pe_pei02_countOfNotNull('', '', '', '', '', 'FM', 'NULL', '2') = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '139.8'::text number,
+SELECT '146.8'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test 0 layers'::text description,
        TT_pe_pei02_countOfNotNull('', '', '', '', '', '', 'NULL', '2') = 0 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '139.9'::text number,
+SELECT '146.9'::text number,
        'TT_pe_pei02_countOfNotNull'::text function_tested,
        'Test all spec and nfl'::text description,
        TT_pe_pei02_countOfNotNull('BS', 'AS', 'MA', 'BF', 'WE', 'SO', 'NULL', '2') = 2 passed
@@ -4928,31 +4869,31 @@ SELECT '139.9'::text number,
 -- TT_mb_fri03_getSpeciesPer1
 ---------------------------------------------------------
 UNION ALL
-SELECT '140.1'::text number,
+SELECT '147.1'::text number,
        'TT_mb_fri03_getSpeciesPer1'::text function_tested,
        'Test single species with unspecified percentage'::text description,
        TT_mb_fri03_getSpeciesPer1('TR') = 100 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '140.2'::text number,
+SELECT '147.2'::text number,
        'TT_mb_fri03_getSpeciesPer1'::text function_tested,
        'Test single species with 100%'::text description,
        TT_mb_fri03_getSpeciesPer1('TR10') = 100 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '140.3'::text number,
+SELECT '147.3'::text number,
        'TT_mb_fri03_getSpeciesPer1'::text function_tested,
        'Test multiple species'::text description,
        TT_mb_fri03_getSpeciesPer1('TR9FL1') = 90 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '140.4'::text number,
+SELECT '147.4'::text number,
        'TT_mb_fri03_getSpeciesPer1'::text function_tested,
        'Test single species with non 100%'::text description,
        TT_mb_fri03_getSpeciesPer1('TR9') IS NULL passed
  ---------------------------------------------------------
 UNION ALL
-SELECT '140.5'::text number,
+SELECT '147.5'::text number,
        'TT_mb_fri03_getSpeciesPer1'::text function_tested,
        'Test invalid first species'::text description,
        TT_mb_fri03_getSpeciesPer1('T1') IS NULL passed
@@ -4960,55 +4901,55 @@ SELECT '140.5'::text number,
  -- TT_mb_fri03_species_validation
 ---------------------------------------------------------
 UNION ALL
-SELECT '141.1'::text number,
+SELECT '148.1'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test single species with unspecified percentage'::text description,
        TT_mb_fri03_species_validation('TR', '1') = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '141.2'::text number,
+SELECT '148.2'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test single species with 100%'::text description,
        TT_mb_fri03_species_validation('TR10', '1') = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '141.3'::text number,
+SELECT '148.3'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test first of multiple species'::text description,
        TT_mb_fri03_species_validation('TR9FL1', '1') = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '141.4'::text number,
+SELECT '148.4'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test second species'::text description,
        TT_mb_fri03_species_validation('TR9FL1', '2') = TRUE passed
  ---------------------------------------------------------
 UNION ALL
-SELECT '141.5'::text number,
+SELECT '148.5'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test third of multiple species'::text description,
        TT_mb_fri03_species_validation('JP6TR2TL1PL1', '3') = TRUE passed
  ---------------------------------------------------------
 UNION ALL
-SELECT '141.6'::text number,
+SELECT '148.6'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test fourth species doesnt exist'::text description,
        TT_mb_fri03_species_validation('JP7TR2TL1', '4') = FALSE passed
  ---------------------------------------------------------
 UNION ALL
-SELECT '141.7'::text number,
+SELECT '148.7'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test fifth species invalid percentage'::text description,
        TT_mb_fri03_species_validation('JP5TR2TL1PL1TSS', '5') = FALSE passed
  ---------------------------------------------------------
 UNION ALL
-SELECT '141.8'::text number,
+SELECT '148.8'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test sixth species invalid species code'::text description,
        TT_mb_fri03_species_validation('JP4TR2TL1PL1TS1W11', '6') = FALSE passed
  ---------------------------------------------------------
 UNION ALL
-SELECT '141.9'::text number,
+SELECT '148.9'::text number,
        'TT_mb_fri03_species_validation'::text function_tested,
        'Test empty species'::text description,
        TT_mb_fri03_species_validation('', '1') = FALSE passed
@@ -5016,25 +4957,25 @@ SELECT '141.9'::text number,
  -- TT_mb_fli01_hasCountOfNotNull
 ---------------------------------------------------------
 UNION ALL
-SELECT '142.1'::text number,
+SELECT '149.1'::text number,
        'TT_mb_fli01_hasCountOfNotNull'::text function_tested,
        'Test single species and NFL'::text description,
        TT_mb_fli01_hasCountOfNotNull('{SP1}', '{NULL}', '{NULL}', '{NULL}', '{NULL}', 'NMB', 1::TEXT, FALSE::TEXT) = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '142.2'::text number,
+SELECT '149.2'::text number,
        'TT_mb_fli01_hasCountOfNotNull'::text function_tested,
        'Test single species and NFL exact'::text description,
        TT_mb_fli01_hasCountOfNotNull('{SP1}', '{NULL}', '{NULL}', '{NULL}', '{NULL}', 'NMB', 1::TEXT, TRUE::TEXT) = FALSE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '142.3'::text number,
+SELECT '149.3'::text number,
        'TT_mb_fli01_hasCountOfNotNull'::text function_tested,
        'Test invalid NFL code'::text description,
        TT_mb_fli01_hasCountOfNotNull('{NULL}', '{NULL}', '{NULL}', '{NULL}', '{NULL}', 'ABC', 1::TEXT, FALSE::TEXT) = FALSE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '142.4'::text number,
+SELECT '149.4'::text number,
        'TT_mb_fli01_hasCountOfNotNull'::text function_tested,
        'Test less than needed'::text description,
        TT_mb_fli01_hasCountOfNotNull('{SP1}', '{SP2}', '{NULL}', '{NULL}', '{NULL}', 'NULL', 3::TEXT, FALSE::TEXT) = FALSE passed
@@ -5042,91 +4983,78 @@ SELECT '142.4'::text number,
  -- TT_mb_fli01_countOfNotNull
 ---------------------------------------------------------
 UNION ALL
-SELECT '143.1'::text number,
+SELECT '150.1'::text number,
        'TT_mb_fli01_countOfNotNull'::text function_tested,
        'Test single species and NFL'::text description,
        TT_mb_fli01_countOfNotNull('{SP1}', '{NULL}', '{NULL}', '{NULL}', '{NULL}', 'NMB', 6::TEXT) = 2 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '143.2'::text number,
+SELECT '150.2'::text number,
        'TT_mb_fli01_countOfNotNull'::text function_tested,
        'Test max rank less than existing'::text description,
        TT_mb_fli01_countOfNotNull('{SP1}', '{NULL}', '{NULL}', '{NULL}', '{NULL}', 'NMB', 1::TEXT) = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '143.3'::text number,
+SELECT '150.3'::text number,
        'TT_mb_fli01_countOfNotNull'::text function_tested,
        'Test invalid NFL code'::text description,
        TT_mb_fli01_countOfNotNull('{NULL}', '{NULL}', '{NULL}', '{NULL}', '{NULL}', 'ABC', 6::TEXT) = 0 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '143.4'::text number,
+SELECT '150.4'::text number,
        'TT_mb_fli01_countOfNotNull'::text function_tested,
        'Test 2 not null'::text description,
        TT_mb_fli01_countOfNotNull('{SP1}', '{SP2}', '{NULL}', '{NULL}', '{NULL}', 'NULL', 3::TEXT) = 2 passed
 ---------------------------------------------------------
+ -- TT_mb_fli01_countOfNotNull
+---------------------------------------------------------
 UNION ALL
-SELECT '144.1'::text number,
-=======
-SELECT '146.1'::text number,
->>>>>>> f0e80082 (Update made to the helperFunctionsCasfri test file to include tests for the NL02 helper functions.)
+SELECT '151.1'::text number,
        'TT_pe_pei01_dist_type_length_validation'::text function_tested,
        'Test substring start = 1'::text description,
        TT_pe_pei01_dist_type_length_validation('AB', 'CD', '1') = TRUE passed
 ---------------------------------------------------------
+
 UNION ALL
-<<<<<<< HEAD
-SELECT '144.2'::text number,
-=======
-SELECT '146.2'::text number,
->>>>>>> f0e80082 (Update made to the helperFunctionsCasfri test file to include tests for the NL02 helper functions.)
+SELECT '151.2'::text number,
        'TT_pe_pei01_dist_type_length_validation'::text function_tested,
        'Test substring start != 1 and length != 4'::text description,
        TT_pe_pei01_dist_type_length_validation('AB', 'CD', '3') = FALSE passed
 ---------------------------------------------------------
 UNION ALL
-<<<<<<< HEAD
-SELECT '144.3'::text number,
-=======
-SELECT '146.3'::text number,
->>>>>>> f0e80082 (Update made to the helperFunctionsCasfri test file to include tests for the NL02 helper functions.)
+SELECT '151.3'::text number,
        'TT_pe_pei01_dist_type_length_validation'::text function_tested,
        'Test coalesced and length 4'::text description,
        TT_pe_pei01_dist_type_length_validation(NULL, 'ABCD', '2') = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-<<<<<<< HEAD
-SELECT '144.4'::text number,
-=======
-SELECT '146.4'::text number,
->>>>>>> f0e80082 (Update made to the helperFunctionsCasfri test file to include tests for the NL02 helper functions.)
+SELECT '151.4'::text number,
        'TT_pe_pei01_dist_type_length_validation'::text function_tested,
        'Test greater than length 4'::text description,
        TT_pe_pei01_dist_type_length_validation('ABCDE', 'ABCD', '4') = FALSE passed
 ---------------------------------------------------------
-<<<<<<< HEAD
  -- TT_pe_pei01_has_nfl_info
 ---------------------------------------------------------
 UNION ALL
-SELECT '145.1'::text number,
+SELECT '152.1'::text number,
        'TT_pe_pei01_has_nfl_info'::text function_tested,
        'Test substring start = 1'::text description,
        TT_pe_pei01_has_nfl_info('PE04', NULL, 'RES', 'CO', NULL) = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '145.2'::text number,
+SELECT '152.2'::text number,
        'TT_pe_pei01_has_nfl_info'::text function_tested,
        'Test substring start != 1 and length != 4'::text description,
        TT_pe_pei01_has_nfl_info('PE01', NULL, NULL, NULL, 'SD') = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '145.3'::text number,
+SELECT '152.3'::text number,
        'TT_pe_pei01_has_nfl_info'::text function_tested,
        'Test coalesced and length 4'::text description,
        TT_pe_pei01_has_nfl_info('PE01', NULL, NULL, NULL, NULL) = FALSE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '145.4'::text number,
+SELECT '152.4'::text number,
        'TT_pe_pei01_has_nfl_info'::text function_tested,
        'Test greater than length 4'::text description,
        TT_pe_pei01_has_nfl_info('PE02', NULL, 'FOR', NULL, NULL) = FALSE passed
@@ -5134,25 +5062,25 @@ SELECT '145.4'::text number,
  -- TT_yvi03_hasCountOfNotNull
 ---------------------------------------------------------
 UNION ALL
-SELECT '146.1'::text number,
+SELECT '153.1'::text number,
        'TT_yvi03_hascountofnotnull'::text function_tested,
        'Test species and null NFL'::text description,
        TT_yvi03_hascountofnotnull('SP', NULL, NULL, NULL, NULL, 1::TEXT, TRUE::TEXT) = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '146.2'::text number,
+SELECT '153.2'::text number,
        'TT_yvi03_hascountofnotnull'::text function_tested,
        'Test species and NFL'::text description,
        TT_yvi03_hascountofnotnull('SP', 'Vegetated, Non-Forested', NULL, 'Low Shrub', 'Alpine', 1::TEXT, FALSE::TEXT) = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '146.3'::text number,
+SELECT '153.3'::text number,
        'TT_yvi03_hascountofnotnull'::text function_tested,
        'Test species and non NFL'::text description,
        TT_yvi03_hascountofnotnull('SP', 'Vegetated, Forested', NULL, NULL, 'Upland', 2::TEXT, FALSE::TEXT) = FALSE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '146.4'::text number,
+SELECT '153.4'::text number,
        'TT_yvi03_hascountofnotnull'::text function_tested,
        'Test null species and null NFL'::text description,
        TT_yvi03_hascountofnotnull(NULL, NULL, NULL, NULL, NULL, 1::TEXT, FALSE::TEXT) = FALSE passed
@@ -5160,25 +5088,25 @@ SELECT '146.4'::text number,
  -- TT_yvi03_countofnotnull
 ---------------------------------------------------------
 UNION ALL
-SELECT '147.1'::text number,
+SELECT '154.1'::text number,
        'TT_yvi03_countofnotnull'::text function_tested,
        'Test species and null NFL'::text description,
        TT_yvi03_countofnotnull('SP', NULL, NULL, NULL, NULL, 1::TEXT) = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '147.2'::text number,
+SELECT '154.2'::text number,
        'TT_yvi03_countofnotnull'::text function_tested,
        'Test species and NFL'::text description,
        TT_yvi03_countofnotnull('SP', 'Vegetated, Non-Forested', NULL, 'Low Shrub', 'Alpine', 2::TEXT) = 2 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '147.3'::text number,
+SELECT '154.3'::text number,
        'TT_yvi03_countofnotnull'::text function_tested,
        'Test species and non NFL'::text description,
        TT_yvi03_countofnotnull('SP', 'Vegetated, Forested', NULL, NULL, 'Upland', 2::TEXT) = 1 passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '147.4'::text number,
+SELECT '154.4'::text number,
        'TT_yvi03_countofnotnull'::text function_tested,
        'Test null species and null NFL'::text description,
        TT_yvi03_countofnotnull(NULL, NULL, NULL, NULL, NULL, 1::TEXT) = 0 passed
@@ -5186,25 +5114,25 @@ SELECT '147.4'::text number,
  -- TT_nt_fvi01_species_per_range_validation
 ---------------------------------------------------------
 UNION ALL
-SELECT '148.1'::text number,
+SELECT '155.1'::text number,
        'TT_nt_fvi01_species_per_range_validation'::text function_tested,
        'Test valid small range'::text description,
        TT_nt_fvi01_species_per_range_validation('NT03', '2') = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '148.2'::text number,
+SELECT '155.2'::text number,
        'TT_nt_fvi01_species_per_range_validation'::text function_tested,
        'Test valid large range'::text description,
        TT_nt_fvi01_species_per_range_validation('NT04', '60') = TRUE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '148.3'::text number,
+SELECT '155.3'::text number,
        'TT_nt_fvi01_species_per_range_validation'::text function_tested,
        'Test invalid small range'::text description,
        TT_nt_fvi01_species_per_range_validation('NT03', '12') = FALSE passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '148.4'::text number,
+SELECT '155.4'::text number,
        'TT_nt_fvi01_species_per_range_validation'::text function_tested,
        'Test invalid large range'::text description,
        TT_nt_fvi01_species_per_range_validation('NT04', '105') = FALSE passed
@@ -5212,32 +5140,30 @@ SELECT '148.4'::text number,
  -- TT_nb_stand_structure_translation
 ---------------------------------------------------------
 UNION ALL
-SELECT '149.1'::text number,
+SELECT '156.1'::text number,
        'TT_nb_stand_structure_translation'::text function_tested,
        'Test single species layer'::text description,
        TT_nb_stand_structure_translation(ARRAY['SP']::TEXT, ARRAY['']::TEXT, 'NOT_LYR') = 'SINGLE_LAYERED' passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '149.2'::text number,
+SELECT '156.2'::text number,
        'TT_nb_stand_structure_translation'::text function_tested,
        'Test two species layers'::text description,
        TT_nb_stand_structure_translation(ARRAY['SP']::TEXT, ARRAY['SP']::TEXT, 'NOT_LYR') = 'MULTI_LAYERED' passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '149.3'::text number,
+SELECT '156.3'::text number,
        'TT_nb_stand_structure_translation'::text function_tested,
        'Test second layer only'::text description,
        TT_nb_stand_structure_translation(ARRAY['']::TEXT, ARRAY['SP']::TEXT, 'FW') = 'MULTI_LAYERED' passed
 ---------------------------------------------------------
 UNION ALL
-SELECT '149.4'::text number,
+SELECT '156.4'::text number,
        'TT_nb_stand_structure_translation'::text function_tested,
        'Test null species and null NFL'::text description,
        TT_nb_stand_structure_translation(ARRAY['SP']::TEXT, ARRAY['SP']::TEXT, 'FW') = 'MULTI_LAYERED' passed
 ---------------------------------------------------------
-=======
 
->>>>>>> f0e80082 (Update made to the helperFunctionsCasfri test file to include tests for the NL02 helper functions.)
 ) AS b 
 ON (a.function_tested = b.function_tested AND (regexp_split_to_array(number, '\.'))[2] = min_num)
 ORDER BY maj_num::int, min_num::int
